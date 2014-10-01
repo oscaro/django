@@ -1,4 +1,4 @@
-VERSION = (1, 7, 11, 'final', 0)
+VERSION = (1, 7, 11, 'final', 0, 'post0')
 
 
 def get_version(*args, **kwargs):
