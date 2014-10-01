@@ -10,7 +10,7 @@ def get_version(version=None):
     if version is None:
         from django import VERSION as version
     else:
-        assert len(version) == 5
+        assert len(version) in (5, 6)
         assert version[3] in ('alpha', 'beta', 'rc', 'final')
 
     # Now build the two parts of the version number:
@@ -31,7 +31,12 @@ def get_version(version=None):
         mapping = {'alpha': 'a', 'beta': 'b', 'rc': 'c'}
         sub = mapping[version[3]] + str(version[4])
 
-    return str(main + sub)
+    # added for oscaro
+    post = ''
+    if len(version) == 6:
+        post = '.%s' % version[5]
+
+    return str(main + sub + post)
 
 
 def get_git_changeset():
